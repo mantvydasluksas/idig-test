@@ -1,0 +1,20 @@
+kind: MCPServer
+apiVersion: api.ibm.com/v1
+metadata:
+  name: mcp1-server-ifrsh
+  namespace: mcp1
+  version: 1.0.0
+  tags: []
+  domain: mcp
+  labels:
+    origin: mcp-mcp
+spec:
+  title: mcp1
+  protocolVersion: V2025_11_25
+  quota:
+    $ref: mcp1:quota-ifrsh:1.0.0
+  policy-sequence:
+    - $ref: mcp1:policy-sequence-ifrsh:1.0.0
+  capabilities:
+    tools:
+      - $ref: mcp1:mcp1-tool-ifrsh:1.0.0

@@ -1,0 +1,84 @@
+{
+  "projectId": "VovABZXN",
+  "nodes": [
+    {
+      "id": "71a6957f-0287-4576-8711-6ecd96359a5a:0",
+      "projectId": "VovABZXN",
+      "filePath": "mcp-invoke-ifrsh.yaml",
+      "docIndex": 0,
+      "assetType": "resource",
+      "lastIndexed": 1790784597244,
+      "schemaVersion": 1,
+      "kind": "MCPInvoke",
+      "name": "mcp-invoke-ifrsh",
+      "namespace": "mcp1",
+      "version": "1.0.0"
+    },
+    {
+      "id": "bf42c102-79d1-4d9c-b8d9-a49e1a92a11b:0",
+      "projectId": "VovABZXN",
+      "filePath": "mcp1-server-ifrsh.yaml",
+      "docIndex": 0,
+      "assetType": "resource",
+      "lastIndexed": 1790784597244,
+      "schemaVersion": 1,
+      "kind": "MCPServer",
+      "name": "mcp1-server-ifrsh",
+      "namespace": "mcp1",
+      "version": "1.0.0"
+    },
+    {
+      "id": "866e60be-af08-4058-a2e5-c11ba694f215:0",
+      "projectId": "VovABZXN",
+      "filePath": "mcp1-tool-ifrsh.yaml",
+      "docIndex": 0,
+      "assetType": "resource",
+      "lastIndexed": 1790784597244,
+      "schemaVersion": 1,
+      "kind": "MCPTools",
+      "name": "mcp1-tool-ifrsh",
+      "namespace": "mcp1",
+      "version": "1.0.0"
+    },
+    {
+      "id": "676ac4db-f048-4f9d-a5b2-ed5168b38ec3:0",
+      "projectId": "VovABZXN",
+      "filePath": "policy-sequence-ifrsh.yaml",
+      "docIndex": 0,
+      "assetType": "resource",
+      "lastIndexed": 1790784597244,
+      "schemaVersion": 1,
+      "kind": "FreeFlowPolicySequence",
+      "name": "policy-sequence-ifrsh",
+      "namespace": "mcp1",
+      "version": "1.0.0"
+    },
+    {
+      "id": "0d3c789c-f272-4b4e-9721-5cc8498cd6b6:0",
+      "projectId": "VovABZXN",
+      "filePath": "quota-ifrsh.yaml",
+      "docIndex": 0,
+      "assetType": "resource",
+      "lastIndexed": 1790784597244,
+      "schemaVersion": 1,
+      "kind": "Quota",
+      "name": "quota-ifrsh",
+      "namespace": "mcp1",
+      "version": "1.0.0"
+    },
+    {
+      "id": "b00eddd9-d12d-4191-91a7-b40b975c3434:0",
+      "projectId": "VovABZXN",
+      "filePath": "telemetry-ifrsh.yaml",
+      "docIndex": 0,
+      "assetType": "resource",
+      "lastIndexed": 1790784597245,
+      "schemaVersion": 1,
+      "kind": "Telemetry",
+      "name": "telemetry-ifrsh",
+      "namespace": "mcp1",
+      "version": "1.0.0"
+    }
+  ],
+  "edges": []
+}
