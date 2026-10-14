@@ -1,0 +1,12 @@
+kind: Telemetry
+apiVersion: api.ibm.com/v1
+metadata:
+  name: mcp-telemetry-4cxq0
+  namespace: test-ns
+  version: 1.0.0
+  tags: []
+  domain: mcp
+  labels:
+    gatewayTypes:
+      - nano
+spec: {}

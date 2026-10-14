@@ -1,0 +1,25 @@
+kind: MCPInvoke
+apiVersion: api.ibm.com/v1
+metadata:
+  name: mcp-invoke-4cxq0
+  namespace: test-ns
+  version: 1.0.0
+  tags: []
+  domain: mcp
+  labels:
+    gatewayTypes:
+      - nano
+spec:
+  input: request
+  endpoint:
+    httpSse:
+      serverUrl:
+        plain:
+          value: https://us-south.ml.cloud.ibm.com/mcp
+      timeout: 30
+    primitive:
+      tool:
+        name:
+          plain:
+            value: tool_name
+        output: response

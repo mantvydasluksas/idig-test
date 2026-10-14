@@ -1,0 +1,20 @@
+kind: MCPServer
+apiVersion: api.ibm.com/v1
+metadata:
+  name: mcp-server-4cxq0
+  namespace: test-ns
+  version: 1.0.0
+  tags: []
+  domain: mcp
+  labels:
+    origin: mcp-mcp
+spec:
+  title: mcp-server-4cxq0
+  protocolVersion: V2025_11_25
+  quota:
+    $ref: test-ns:mcp-quota-4cxq0:1.0.0
+  policy-sequence:
+    - $ref: test-ns:mcp-policy-sequence-4cxq0:1.0.0
+  capabilities:
+    tools:
+      - $ref: test-ns:mcp-tool-4cxq0:1.0.0

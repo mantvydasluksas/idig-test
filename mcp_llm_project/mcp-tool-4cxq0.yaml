@@ -1,0 +1,32 @@
+kind: MCPTools
+apiVersion: api.ibm.com/v1
+metadata:
+  name: mcp-tool-4cxq0
+  namespace: test-ns
+  version: 1.0.0
+  tags: []
+  domain: mcp
+  labels: {}
+spec:
+  tools:
+    - name: query_model
+      title: query_model
+      description: Query a Watsonx foundation model with a prompt.
+      inputSchema:
+        properties:
+          model_id:
+            description: The ID of the Watsonx model to query.
+            type: string
+          prompt:
+            description: The input prompt to send to the model.
+            type: string
+        required:
+          - model_id
+          - prompt
+        type: object
+    - name: list_models
+      title: list_models
+      description: List available Watsonx foundation models.
+      inputSchema:
+        properties: {}
+        type: object
