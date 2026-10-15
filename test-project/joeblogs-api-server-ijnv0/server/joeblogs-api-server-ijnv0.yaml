@@ -1,0 +1,20 @@
+kind: MCPServer
+apiVersion: api.ibm.com/v1
+metadata:
+  name: joeblogs-api-server-ijnv0
+  namespace: test-project
+  version: "1.0"
+  tags: []
+  domain: mcp
+  labels:
+    origin: mcp-rest
+spec:
+  title: JoeBlogs API MCP Server
+  protocolVersion: V2025_11_25
+  plans:
+    - $ref: test-project:test-project-plan-ijnv0:1.0
+  policy-sequence:
+    - $ref: test-project:test-project-freeflowpolicysequence-ijnv0:1.0
+  capabilities:
+    tools:
+      - $ref: test-project:joeblogs-api-tool-ijnv0:1.0

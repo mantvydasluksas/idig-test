@@ -1,0 +1,871 @@
+kind: MCPTools
+apiVersion: api.ibm.com/v1
+metadata:
+  name: joeblogs-api-tool-ijnv0
+  namespace: test-project
+  version: "1.0"
+  tags: []
+  description: REST API for testing and prototyping.
+  domain: mcp
+  labels:
+    api-spec: ./joeblogs-api-spec.yml
+spec:
+  tools:
+    - name: get_posts
+      description: Returns a list of all posts
+      inputSchema:
+        type: object
+        properties:
+          userId:
+            description: Filter posts by user ID
+            x-parameter-location: query
+            type: integer
+          _limit:
+            description: Limit the number of results
+            x-parameter-location: query
+            type: integer
+          _page:
+            description: Page number for pagination
+            x-parameter-location: query
+            type: integer
+      title: Get all posts
+      x-api-binding:
+        operationPath: /posts
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: post_posts
+      description: Creates a new post (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          userId: &a1
+            type: integer
+            description: User ID who created the post
+          title: &a2
+            type: string
+            description: Post title
+          body: &a3
+            type: string
+            description: Post content
+        required:
+          - userId
+          - title
+          - body
+      title: Create a new post
+      x-api-binding:
+        operationPath: /posts
+        operationMethod: POST
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_id
+      description: Returns a single post
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Post ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get a post by ID
+      x-api-binding:
+        operationPath: /posts/{id}
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: put_id
+      description: Updates a post (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Post ID
+            x-parameter-location: path
+            type: integer
+          userId: *a1
+          title: *a2
+          body: *a3
+        required:
+          - id
+          - userId
+          - title
+          - body
+      title: Update a post
+      x-api-binding:
+        operationPath: /posts/{id}
+        operationMethod: PUT
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: patch_id
+      description: Partially updates a post (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Post ID
+            x-parameter-location: path
+            type: integer
+          title:
+            type: string
+          body:
+            type: string
+          userId:
+            type: integer
+        required:
+          - id
+      title: Partially update a post
+      x-api-binding:
+        operationPath: /posts/{id}
+        operationMethod: PATCH
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: delete_id
+      description: Deletes a post (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Post ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Delete a post
+      x-api-binding:
+        operationPath: /posts/{id}
+        operationMethod: DELETE
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_comments
+      description: Returns all comments for a specific post
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Post ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get comments for a post
+      x-api-binding:
+        operationPath: /posts/{id}/comments
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_comments
+      description: Returns a list of all comments
+      inputSchema:
+        type: object
+        properties:
+          postId:
+            description: Filter comments by post ID
+            x-parameter-location: query
+            type: integer
+      title: Get all comments
+      x-api-binding:
+        operationPath: /comments
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: post_comments
+      description: Creates a new comment (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          postId: &a4
+            type: integer
+            description: Post ID this comment belongs to
+          name: &a5
+            type: string
+            description: Comment title
+          email: &a6
+            type: string
+            format: email
+            description: Commenter's email
+          body: &a7
+            type: string
+            description: Comment content
+        required:
+          - postId
+          - name
+          - email
+          - body
+      title: Create a new comment
+      x-api-binding:
+        operationPath: /comments
+        operationMethod: POST
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_id
+      description: Returns a single comment
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Comment ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get a comment by ID
+      x-api-binding:
+        operationPath: /comments/{id}
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: put_id
+      description: Updates a comment (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Comment ID
+            x-parameter-location: path
+            type: integer
+          postId: *a4
+          name: *a5
+          email: *a6
+          body: *a7
+        required:
+          - id
+          - postId
+          - name
+          - email
+          - body
+      title: Update a comment
+      x-api-binding:
+        operationPath: /comments/{id}
+        operationMethod: PUT
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: patch_id
+      description: Partially updates a comment (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Comment ID
+            x-parameter-location: path
+            type: integer
+          name:
+            type: string
+          email:
+            type: string
+          body:
+            type: string
+        required:
+          - id
+      title: Partially update a comment
+      x-api-binding:
+        operationPath: /comments/{id}
+        operationMethod: PATCH
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: delete_id
+      description: Deletes a comment (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Comment ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Delete a comment
+      x-api-binding:
+        operationPath: /comments/{id}
+        operationMethod: DELETE
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_albums
+      description: Returns a list of all albums
+      inputSchema:
+        type: object
+        properties:
+          userId:
+            description: Filter albums by user ID
+            x-parameter-location: query
+            type: integer
+      title: Get all albums
+      x-api-binding:
+        operationPath: /albums
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: post_albums
+      description: Creates a new album (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          userId: &a8
+            type: integer
+            description: User ID who owns the album
+          title: &a9
+            type: string
+            description: Album title
+        required:
+          - userId
+          - title
+      title: Create a new album
+      x-api-binding:
+        operationPath: /albums
+        operationMethod: POST
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_id
+      description: Returns a single album
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Album ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get an album by ID
+      x-api-binding:
+        operationPath: /albums/{id}
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: put_id
+      description: Updates an album (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Album ID
+            x-parameter-location: path
+            type: integer
+          userId: *a8
+          title: *a9
+        required:
+          - id
+          - userId
+          - title
+      title: Update an album
+      x-api-binding:
+        operationPath: /albums/{id}
+        operationMethod: PUT
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: patch_id
+      description: Partially updates an album (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Album ID
+            x-parameter-location: path
+            type: integer
+          title:
+            type: string
+          userId:
+            type: integer
+        required:
+          - id
+      title: Partially update an album
+      x-api-binding:
+        operationPath: /albums/{id}
+        operationMethod: PATCH
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: delete_id
+      description: Deletes an album (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Album ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Delete an album
+      x-api-binding:
+        operationPath: /albums/{id}
+        operationMethod: DELETE
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_photos
+      description: Returns all photos for a specific album
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Album ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get photos for an album
+      x-api-binding:
+        operationPath: /albums/{id}/photos
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_photos
+      description: Returns a list of all photos
+      inputSchema:
+        type: object
+        properties:
+          albumId:
+            description: Filter photos by album ID
+            x-parameter-location: query
+            type: integer
+      title: Get all photos
+      x-api-binding:
+        operationPath: /photos
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: post_photos
+      description: Creates a new photo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          albumId: &a10
+            type: integer
+            description: Album ID this photo belongs to
+          title: &a11
+            type: string
+            description: Photo title
+          url: &a12
+            type: string
+            format: uri
+            description: Photo URL
+          thumbnailUrl: &a13
+            type: string
+            format: uri
+            description: Photo thumbnail URL
+        required:
+          - albumId
+          - title
+          - url
+          - thumbnailUrl
+      title: Create a new photo
+      x-api-binding:
+        operationPath: /photos
+        operationMethod: POST
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_id
+      description: Returns a single photo
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Photo ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get a photo by ID
+      x-api-binding:
+        operationPath: /photos/{id}
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: put_id
+      description: Updates a photo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Photo ID
+            x-parameter-location: path
+            type: integer
+          albumId: *a10
+          title: *a11
+          url: *a12
+          thumbnailUrl: *a13
+        required:
+          - id
+          - albumId
+          - title
+          - url
+          - thumbnailUrl
+      title: Update a photo
+      x-api-binding:
+        operationPath: /photos/{id}
+        operationMethod: PUT
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: patch_id
+      description: Partially updates a photo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Photo ID
+            x-parameter-location: path
+            type: integer
+          title:
+            type: string
+          url:
+            type: string
+          thumbnailUrl:
+            type: string
+        required:
+          - id
+      title: Partially update a photo
+      x-api-binding:
+        operationPath: /photos/{id}
+        operationMethod: PATCH
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: delete_id
+      description: Deletes a photo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Photo ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Delete a photo
+      x-api-binding:
+        operationPath: /photos/{id}
+        operationMethod: DELETE
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_todos
+      description: Returns a list of all todos
+      inputSchema:
+        type: object
+        properties:
+          userId:
+            description: Filter todos by user ID
+            x-parameter-location: query
+            type: integer
+      title: Get all todos
+      x-api-binding:
+        operationPath: /todos
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: post_todos
+      description: Creates a new todo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          userId: &a14
+            type: integer
+            description: User ID who owns the todo
+          title: &a15
+            type: string
+            description: Todo title
+          completed: &a16
+            type: boolean
+            description: Todo completion status
+        required:
+          - userId
+          - title
+          - completed
+      title: Create a new todo
+      x-api-binding:
+        operationPath: /todos
+        operationMethod: POST
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_id
+      description: Returns a single todo
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Todo ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get a todo by ID
+      x-api-binding:
+        operationPath: /todos/{id}
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: put_id
+      description: Updates a todo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Todo ID
+            x-parameter-location: path
+            type: integer
+          userId: *a14
+          title: *a15
+          completed: *a16
+        required:
+          - id
+          - userId
+          - title
+          - completed
+      title: Update a todo
+      x-api-binding:
+        operationPath: /todos/{id}
+        operationMethod: PUT
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: patch_id
+      description: Partially updates a todo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Todo ID
+            x-parameter-location: path
+            type: integer
+          title:
+            type: string
+          completed:
+            type: boolean
+          userId:
+            type: integer
+        required:
+          - id
+      title: Partially update a todo
+      x-api-binding:
+        operationPath: /todos/{id}
+        operationMethod: PATCH
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: delete_id
+      description: Deletes a todo (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: Todo ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Delete a todo
+      x-api-binding:
+        operationPath: /todos/{id}
+        operationMethod: DELETE
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_users
+      description: Returns a list of all users
+      inputSchema:
+        type: object
+        properties: {}
+      title: Get all users
+      x-api-binding:
+        operationPath: /users
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: post_users
+      description: Creates a new user (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          name: &a17
+            type: string
+            description: User's full name
+          username: &a18
+            type: string
+            description: Username
+          email: &a19
+            type: string
+            format: email
+            description: User's email
+          address:
+            type: object
+            properties:
+              street: &a20
+                type: string
+              suite: &a21
+                type: string
+              city: &a22
+                type: string
+              zipcode: &a23
+                type: string
+              geo:
+                type: object
+                properties:
+                  lat: &a24
+                    type: string
+                  lng: &a25
+                    type: string
+          phone: &a26
+            type: string
+            description: User's phone number
+          website: &a27
+            type: string
+            description: User's website
+          company:
+            type: object
+            properties:
+              name: &a28
+                type: string
+              catchPhrase: &a29
+                type: string
+              bs: &a30
+                type: string
+        required:
+          - name
+          - username
+          - email
+      title: Create a new user
+      x-api-binding:
+        operationPath: /users
+        operationMethod: POST
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_id
+      description: Returns a single user
+      inputSchema:
+        type: object
+        properties: {}
+      title: Get a user by ID
+      x-api-binding:
+        operationPath: /users/{id}
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: put_id
+      description: Updates a user (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: User ID
+            x-parameter-location: path
+            type: integer
+          name: *a17
+          username: *a18
+          email: *a19
+          address:
+            type: object
+            properties:
+              street: *a20
+              suite: *a21
+              city: *a22
+              zipcode: *a23
+              geo:
+                type: object
+                properties:
+                  lat: *a24
+                  lng: *a25
+          phone: *a26
+          website: *a27
+          company:
+            type: object
+            properties:
+              name: *a28
+              catchPhrase: *a29
+              bs: *a30
+        required:
+          - id
+          - name
+          - username
+          - email
+      title: Update a user
+      x-api-binding:
+        operationPath: /users/{id}
+        operationMethod: PUT
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: patch_id
+      description: Partially updates a user (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: User ID
+            x-parameter-location: path
+            type: integer
+          name:
+            type: string
+          username:
+            type: string
+          email:
+            type: string
+        required:
+          - id
+      title: Partially update a user
+      x-api-binding:
+        operationPath: /users/{id}
+        operationMethod: PATCH
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: delete_id
+      description: Deletes a user (fake - not persisted)
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: User ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Delete a user
+      x-api-binding:
+        operationPath: /users/{id}
+        operationMethod: DELETE
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_posts
+      description: Returns all posts for a specific user
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: User ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get posts for a user
+      x-api-binding:
+        operationPath: /users/{id}/posts
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_albums
+      description: Returns all albums for a specific user
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: User ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get albums for a user
+      x-api-binding:
+        operationPath: /users/{id}/albums
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
+    - name: get_todos
+      description: Returns all todos for a specific user
+      inputSchema:
+        type: object
+        properties:
+          id:
+            description: User ID
+            x-parameter-location: path
+            type: integer
+        required:
+          - id
+      title: Get todos for a user
+      x-api-binding:
+        operationPath: /users/{id}/todos
+        operationMethod: GET
+        api:
+          $path: ./joeblogs-api-spec.yml
