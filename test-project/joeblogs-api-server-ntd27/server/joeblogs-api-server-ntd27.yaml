@@ -1,0 +1,20 @@
+kind: MCPServer
+apiVersion: api.ibm.com/v1
+metadata:
+  name: joeblogs-api-server-ntd27
+  namespace: test-project
+  version: "1.0"
+  tags: []
+  domain: mcp
+  labels:
+    origin: mcp-rest
+spec:
+  title: JoeBlogs API MCP Server
+  protocolVersion: V2025_11_25
+  plans:
+    - $ref: test-project:test-project-plan-ntd27:1.0
+  policy-sequence:
+    - $ref: test-project:test-project-freeflowpolicysequence-ntd27:1.0
+  capabilities:
+    tools:
+      - $ref: test-project:joeblogs-api-tool-ntd27:1.0

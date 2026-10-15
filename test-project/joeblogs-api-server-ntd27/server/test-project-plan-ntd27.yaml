@@ -1,0 +1,14 @@
+kind: Plan
+apiVersion: api.ibm.com/v1
+metadata:
+  name: test-project-plan-ntd27
+  namespace: test-project
+  version: "1.0"
+  tags: []
+  description: ""
+  domain: mcp
+spec:
+  qos:
+    withQuota:
+      test-project-plan-ntd27-limit:
+        - $ref: test-project:test-project-quota-ntd27:1.0
